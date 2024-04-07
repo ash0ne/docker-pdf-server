@@ -23,9 +23,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          npm install -g semantic-release @semantic-release/commit-analyzer \
-          @semantic-release/npm @semantic-release/github \
-          @semantic-release/changelog @semantic-release/git @semantic-release/release-notes-generator
+          npm install -g semantic-release @semantic-release/commit-analyzer @semantic-release/npm @semantic-release/github @semantic-release/changelog @semantic-release/git @semantic-release/release-notes-generator
           npx semantic-release
 
       - name: Login to GitHub Container Registry

@@ -1,143 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
-            rel="stylesheet"
-            type="text/css"
-            href="{{ url_for('static', filename='styles.css') }}"
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='styles.css') }}"
     />
     <title>PDF Organizer</title>
     <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
-</head>
-<body>
-<div class="container mt-4">
-    <!-- File upload section -->
-    <form action="/upload" method="post" enctype="multipart/form-data">
+  </head>
+  <body>
+    <div class="container mt-4">
+      <!-- File upload section -->
+      <form action="/upload" method="post" enctype="multipart/form-data">
         <div class="input-group mb-3">
-            <div class="custom-file">
-                <input
-                        type="file"
-                        class="custom-file-input"
-                        id="inputGroupFile"
-                        name="file"
-                        accept=".pdf"
-                        onchange="updateFileName(this)"
-                        required
-                />
-                <label class="custom-file-label" for="inputGroupFile"
-                >Choose PDF file</label
-                >
-            </div>
-            <div class="input-group-append">
-                <button class="btn btn-dark" type="submit">Upload</button>
-            </div>
+          <div class="custom-file">
+            <input
+              type="file"
+              class="custom-file-input"
+              id="inputGroupFile"
+              name="file"
+              accept=".pdf"
+              onchange="updateFileName(this)"
+              required
+            />
+            <label class="custom-file-label" for="inputGroupFile"
+              >Choose PDF file</label
+            >
+          </div>
+          <div class="input-group-append">
+            <button class="btn btn-dark" type="submit">Upload</button>
+          </div>
         </div>
-    </form>
+      </form>
 
-    <!-- File search section -->
-    <form id="searchForm" action="/search" method="get" class="form-inline my-2 my-lg-0"
-          onsubmit="return validateForm()">
+      <!-- File search section -->
+      <form
+        id="searchForm"
+        action="/search"
+        method="get"
+        class="form-inline my-2 my-lg-0"
+        onsubmit="return validateForm()"
+      >
         <input
-                class="form-control mr-sm-2"
-                type="search"
-                required
-                placeholder="Search Library"
-                aria-label="Search"
-                id="searchInput"
-                name="query"
-                {% if query %}
-                value="{{ query }}"
-                {% endif %}
+          class="form-control mr-sm-2"
+          type="search"
+          required
+          placeholder="Search Library"
+          aria-label="Search"
+          id="searchInput"
+          name="query"
+          {% if query %}
+          value="{{ query }}"
+          {% endif %}
         />
         <button
-                class="btn btn-dark my-2 my-sm-0"
-                type="submit"
-                id="searchButton"
+          class="btn btn-dark my-2 my-sm-0"
+          type="submit"
+          id="searchButton"
         >
-            Search
+          Search
         </button>
         <a
-                href="/"
-                class="btn btn-info ml-2 my-2 my-sm-0"
-                id="searchResetButton"
+          href="/"
+          class="btn btn-info ml-2 my-2 my-sm-0"
+          id="searchResetButton"
         >
-            Reset Search
+          Reset Search
         </a>
-    </form>
-    {% if limit_exceeded %}
-    <p class="text-warning mt-3">
+      </form>
+      {% if limit_exceeded %}
+      <p class="text-warning mt-3">
         Search results exceed the limit. Showing first 20 results. Try refining
         your search more.
-    </p>
-    {% endif %}
+      </p>
+      {% endif %}
 
-    <!-- File grid display section -->
-    <div id="pdfList" class="thumbnail-container">
+      <!-- File grid display section -->
+      <div id="pdfList" class="thumbnail-container">
         {% for file in files %}
         <div class="thumbnail-item">
-            <a href="/library/{{ file }}" target="_blank">
-                <div class="thumbnail-wrapper">
-                    <img src="/library/{{ file }}.png" class="thumbnail-img"
-                         alt="Thumbnail" onerror="this.onerror=null;
-              this.src='/static/pdf-file.png';"/>
-                </div>
-                <div class="thumbnail-name">{{ file | truncate(11, '...') }}</div>
-            </a>
-            <form
-                    action="{{ url_for('delete_file') }}"
-                    method="post"
-                    style="display: inline"
-            >
-                <input type="hidden" name="filename" value="{{ file }}"/>
-                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-            </form>
+          <a href="/library/{{ file }}" target="_blank">
+            <div class="thumbnail-wrapper">
+              <img
+                src="/library/{{ file }}.png"
+                class="thumbnail-img"
+                alt="Thumbnail"
+                onerror="this.onerror=null;
+      this.src='/static/pdf-file.png';"
+              />
+            </div>
+            <div class="thumbnail-name">{{ file | replace(".pdf","") | truncate(20, '...') }}</div>
+          </a>
+          <form
+            action="{{ url_for('delete_file') }}"
+            method="post"
+            style="display: inline"
+            onsubmit="return confirmDelete('{{ file }}');"
+          >
+            <input type="hidden" name="filename" value="{{ file }}" />
+            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+          </form>
         </div>
+
         {% endfor %}
+      </div>
+
+      <!-- Pagination if more than 12 files exist -->
+      <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          {% if pagination.has_prev %}
+          <li class="page-item">
+            <a class="page-link" href="{{ url_for('index', page=1) }}">First</a>
+          </li>
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="{{ url_for('index', page=pagination.page - 1) }}"
+              >Previous</a
+            >
+          </li>
+          {% endif %} {% if pagination.has_next %}
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="{{ url_for('index', page=pagination.page + 1) }}"
+              >Next</a
+            >
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="{{ url_for('index', page=last) }}"
+              >Last</a
+            >
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
     </div>
 
-    <!-- Pagination if more than 12 files exist -->
-    <nav aria-label="Page navigation">
-        <ul class="pagination justify-content-center">
-            {% if pagination.has_prev %}
-            <li class="page-item">
-                <a class="page-link" href="{{ url_for('index', page=1) }}">First</a>
-            </li>
-            <li class="page-item">
-                <a
-                        class="page-link"
-                        href="{{ url_for('index', page=pagination.page - 1) }}"
-                >Previous</a
-                >
-            </li>
-            {% endif %} {% if pagination.has_next %}
-            <li class="page-item">
-                <a
-                        class="page-link"
-                        href="{{ url_for('index', page=pagination.page + 1) }}"
-                >Next</a
-                >
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="{{ url_for('index', page=last) }}"
-                >Last</a
-                >
-            </li>
-            {% endif %}
-        </ul>
-    </nav>
-</div>
-
-<!-- Scripts -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script>
-    function updateFileName(input) {
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      function updateFileName(input) {
         if (input.files && input.files[0]) {
           var fileName = input.files[0].name;
           var truncatedFileName =
@@ -148,15 +159,20 @@
         }
       }
 
-    function validateForm() {
-            var inputField = document.getElementById("searchInput");
-            if (inputField.value.trim() === "") {
-                inputField.value=""
-                return false;
-            }
-            return true;
+      function validateForm() {
+        var inputField = document.getElementById("searchInput");
+        if (inputField.value.trim() === "") {
+          inputField.value = "";
+          return false;
         }
+        return true;
+      }
 
-</script>
-</body>
+      function confirmDelete(fileName) {
+        return confirm(
+          'Are you sure you want to delete the file "' + fileName + '"?'
+        );
+      }
+    </script>
+  </body>
 </html>

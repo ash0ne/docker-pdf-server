@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - pre-release
+      - beta
 
 jobs:
   build-and-deploy:

@@ -22,4 +22,6 @@ jobs:
           docker run -d -e DOCKER_PDF_SERVER_USER=test-user \
           -e DOCKER_PDF_SERVER_PASSWORD=test-password \
           -p 5000:5000 ghcr.io/ash0ne/docker-pdf-server:latest
+          curl -Iv http://localhost:5000
+          curl -Iv u user:test-password http://localhost:5000
           sh smoke_test.sh

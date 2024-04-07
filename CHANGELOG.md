@@ -1,3 +1,17 @@
+# [1.1.0-beta.2](https://github.com/ash0ne/docker-pdf-server/compare/v1.1.0-beta.1...v1.1.0-beta.2) (2024-04-07)
+
+
+### Bug Fixes
+
+* adding github plugin to sem ver ([a3dd5ad](https://github.com/ash0ne/docker-pdf-server/commit/a3dd5adf6d24956cc65c7c5eb336d1558f4e375a))
+* adding in npm to update package.json ([4efe418](https://github.com/ash0ne/docker-pdf-server/commit/4efe418763c93eb522480e0e5f66e0cc87b36cb7))
+* plugin config ([32c4e40](https://github.com/ash0ne/docker-pdf-server/commit/32c4e400544b52cb5c4827d2a5029a1f2afd4492))
+
+
+### Features
+
+* Updating CI to publish to Docker ([66e6671](https://github.com/ash0ne/docker-pdf-server/commit/66e6671c37b6c99d2560b6ee4354234e7bd6146b))
+
 # [1.1.0-beta.1](https://github.com/ash0ne/docker-pdf-server/compare/v1.0.0...v1.1.0-beta.1) (2024-04-07)
 
 

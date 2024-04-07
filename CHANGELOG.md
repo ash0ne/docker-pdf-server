@@ -1,3 +1,16 @@
+# [1.2.0](https://github.com/ash0ne/docker-pdf-server/compare/v1.1.0...v1.2.0) (2024-04-07)
+
+
+### Bug Fixes
+
+* adding github plugin to sem ver ([a3dd5ad](https://github.com/ash0ne/docker-pdf-server/commit/a3dd5adf6d24956cc65c7c5eb336d1558f4e375a))
+* minor fix to the CI to install all dependencies of semantic release ([bf998ef](https://github.com/ash0ne/docker-pdf-server/commit/bf998ef32cd205b6f4b766a00851c1137e4d9d6e))
+
+
+### Features
+
+* Updating CI to publish to Docker ([66e6671](https://github.com/ash0ne/docker-pdf-server/commit/66e6671c37b6c99d2560b6ee4354234e7bd6146b))
+
 # [1.2.0-beta.1](https://github.com/ash0ne/docker-pdf-server/compare/v1.1.0...v1.2.0-beta.1) (2024-04-07)
 
 

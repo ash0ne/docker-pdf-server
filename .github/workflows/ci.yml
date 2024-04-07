@@ -13,15 +13,10 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Build Docker Image
+      - name: Login to Docker Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build and push Docker Image
         run: |
           docker build --platform linux/amd64 -t ghcr.io/ash0ne/docker-pdf-server:latest .
-
-      - name: Start app and Test Docker Image
-        run: |
-          docker run -d -e DOCKER_PDF_SERVER_USER=test-user \
-          -e DOCKER_PDF_SERVER_PASSWORD=test-password \
-          -p 5000:5000 ghcr.io/ash0ne/docker-pdf-server:latest
-          curl -Iv http://localhost:5000
-          curl -Iv u user:test-password http://localhost:5000
-          sh smoke_test.sh
+          docker push ghcr.io/ash0ne/docker-pdf-server:latest

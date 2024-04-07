@@ -1,7 +1,19 @@
 {
   "release": {
-    "branches": ["main"]
+    "branches": ["main", {"name": "pre-release", "prerelease": true}]
   },
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    ["@semantic-release/changelog", {
+      "changelogFile": "CHANGELOG.md"
+    }],
+    ["@semantic-release/git", {
+      "assets": ["CHANGELOG.md", "package.json"],
+      "message": "chore(release): ${nextRelease.version} [skip ci]\n\n Committing release assets"
+    }],
+    "@semantic-release/github"
+  ],
   "name": "docker-pdf-server",
   "private": true,
   "version": "0.0.0",

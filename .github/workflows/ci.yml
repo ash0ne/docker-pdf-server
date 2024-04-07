@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - pre-release
 
 jobs:
   build-and-deploy:
@@ -31,3 +32,8 @@ jobs:
           VERSION=$(node -p "require('./package.json').version")
           docker build --platform linux/amd64 -t ghcr.io/ash0ne/docker-pdf-server:${VERSION} .
           docker push ghcr.io/ash0ne/docker-pdf-server:${VERSION}
+          docker tag ghcr.io/ash0ne/docker-pdf-server:${VERSION} ghcr.io/ash0ne/docker-pdf-server:latest
+          docker push ghcr.io/ash0ne/docker-pdf-server:latest
+
+      - name: Logout from Docker Registry
+        run: docker logout ghcr.io

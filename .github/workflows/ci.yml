@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - beta
 
 jobs:
   build-and-deploy:
@@ -21,7 +22,9 @@ jobs:
       - name: Semantic Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx semantic-release
+        run: |
+          npm install -g semantic-release @semantic-release/commit-analyzer @semantic-release/npm @semantic-release/changelog @semantic-release/git @semantic-release/release-notes-generator
+          npx semantic-release
 
       - name: Login to Docker Registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
@@ -31,3 +34,8 @@ jobs:
           VERSION=$(node -p "require('./package.json').version")
           docker build --platform linux/amd64 -t ghcr.io/ash0ne/docker-pdf-server:${VERSION} .
           docker push ghcr.io/ash0ne/docker-pdf-server:${VERSION}
+          docker tag ghcr.io/ash0ne/docker-pdf-server:${VERSION} ghcr.io/ash0ne/docker-pdf-server:latest
+          docker push ghcr.io/ash0ne/docker-pdf-server:latest
+
+      - name: Logout from Docker Registry
+        run: docker logout ghcr.io

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Send a request without authentication
-response_unauthorized=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:3040)
+response_unauthorized=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:5000)
 
 # Check if response status code is 401 Unauthorized
 if [[ "$response_unauthorized" == "401" ]]; then
@@ -12,7 +12,7 @@ else
 fi
 
 # Send a request with basic authentication
-response_authorized=$(curl -s -o /dev/null -w "%{http_code}" -u user:test-password http://localhost:3040)
+response_authorized=$(curl -s -o /dev/null -w "%{http_code}" -u user:test-password http://localhost:5000)
 
 # Check if response status code is 200 OK
 if [[ "$response_authorized" == "200" ]]; then

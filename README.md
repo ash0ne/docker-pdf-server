@@ -13,6 +13,8 @@ it is served as is.
 It is actually functionally similar to any typical client app for a NAS. However, this server brings the convenience of
 browser-based access, allowing for quick viewing and on-the-go reading on any device.
 
+<img src="screenshots/Home.png" alt="Alt text" style="width:70%;">
+
 ## What Docker PDF Server is not
 
 - This server is not designed to be a comprehensive document organizer like Paperless-ngx.

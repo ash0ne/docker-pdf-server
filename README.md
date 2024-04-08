@@ -6,21 +6,22 @@ Flask and HTML, it offers a no-nonsense, straightforward way to upload, delete, 
 ## Why Docker PDF Server?
 
 I developed this server out of a personal need for a quick, e-book-like viewing experience for my PDF library. Unlike
-document organizers like Paperless-ngx, this server focuses solely on delivering a simple way to upload, browse,
-search, and access PDF e-books for reading. When you click on a PDF, it is served as is. Enabling reader view in
-your phone/client browser; even allows for an audiobook-like experience as most browsers support a text to speech
-voice reader.
+document organizers like Paperless-ngx or eBook focused apps like Calibre-web, Kavita etc., this server focuses solely 
+on delivering a simple way to upload, browse, search, and access PDF e-books for reading. When you click on a PDF, 
+it is served as is.
 
 It is actually functionally similar to any typical client app for a NAS. However, this server brings the convenience of
 browser-based access, allowing for quick viewing and on-the-go reading on any device.
 
+<img src="screenshots/Home.png" alt="Alt text" style="width:70%;">
+
 ## What Docker PDF Server is not
 
 - This server is not designed to be a comprehensive document organizer like Paperless-ngx.
-- It lacks a database or any form of grouping system and relies solely on file system, potentially limiting
+- It lacks a database or any form of grouping/bookmarking system and relies solely on file system, potentially limiting
   scalability if you want to have anything over a few 1000 files.
-- Basic authentication is implemented, but it's advisable not to expose the server publicly without additional security.
-  I use this with Authelia running on my reverse-proxy.
+- Basic HTTP authentication is implemented, but not OAuth. It is advisable not to expose the server publicly without additional
+  security. I use this with Authelia running on my reverse-proxy.
 - Currently, it lacks a folder system. Although this feature is simple enough to do and could be considered for future
   implementation.
 - Error handling although basic covers most scenarios.

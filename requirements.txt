@@ -1,6 +1,6 @@
 blinker==1.7.0
 click==8.1.7
-Flask==3.0.2
+Flask==3.0.3
 Flask-HTTPAuth==4.8.0
 flask-paginate==2024.3.28
 gunicorn==21.2.0

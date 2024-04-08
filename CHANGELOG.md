@@ -1,3 +1,10 @@
+# [1.3.0-beta.2](https://github.com/ash0ne/docker-pdf-server/compare/v1.3.0-beta.1...v1.3.0-beta.2) (2024-04-08)
+
+
+### Features
+
+* Adding ARM images ([1d95dd8](https://github.com/ash0ne/docker-pdf-server/commit/1d95dd8951928dce5f7f75945f9ea1d409199d07))
+
 # [1.3.0-beta.1](https://github.com/ash0ne/docker-pdf-server/compare/v1.2.0...v1.3.0-beta.1) (2024-04-08)
 
 

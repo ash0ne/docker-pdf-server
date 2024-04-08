@@ -45,6 +45,12 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Set version
+        id: set_version
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
       - name: Build and push Docker images
         uses: docker/build-push-action@v5
         with:
@@ -54,9 +60,9 @@ jobs:
           push: true
           tags: |
             a0ne/docker-pdf-server:latest
-            a0ne/docker-pdf-server:$(node -p "require('./package.json').version")
+            a0ne/docker-pdf-server:${{ steps.set_version.outputs.version }}
             ghcr.io/${{ github.repository_owner }}/docker-pdf-server:latest
-            ghcr.io/${{ github.repository_owner }}/docker-pdf-server:$(node -p "require('./package.json').version")
+            ghcr.io/${{ github.repository_owner }}/docker-pdf-server:${{ steps.set_version.outputs.version }}
 
       - name: Logout from GitHub Container Registry
         run: docker logout ghcr.io

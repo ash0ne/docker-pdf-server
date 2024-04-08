@@ -6,7 +6,7 @@ Flask and HTML, it offers a no-nonsense, straightforward way to upload, delete, 
 ## Why Docker PDF Server?
 
 I developed this server out of a personal need for a quick, e-book-like viewing experience for my PDF library. Unlike
-document organizers like Paperless-ngx or eBook focused apps like calibre-web,Kavita etc., this server focuses solely 
+document organizers like Paperless-ngx or eBook focused apps like Calibre-web, Kavita etc., this server focuses solely 
 on delivering a simple way to upload, browse, search, and access PDF e-books for reading. When you click on a PDF, 
 it is served as is.
 

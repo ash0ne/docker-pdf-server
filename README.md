@@ -1,5 +1,8 @@
 # Docker PDF Server
 
+![CI Status Badge](https://github.com/ash0ne/docker-pdf-server/actions/workflows/ci.yml/badge.svg)
+![Version](https://img.shields.io/docker/v/a0ne/docker-pdf-server)
+
 Welcome to the Docker PDF Server! This project provides an ultra-minimalist PDF server running on Docker. Built with
 Flask and HTML, it offers a no-nonsense, straightforward way to upload, delete, view, search, and serve PDFs.
 

@@ -1,7 +1,10 @@
 # Docker PDF Server
 
 ![CI Status Badge](https://github.com/ash0ne/docker-pdf-server/actions/workflows/ci.yml/badge.svg)
+![GitHub License](https://img.shields.io/github/license/ash0ne/docker-pdf-server)
 [![Docker Image Version](https://img.shields.io/docker/v/a0ne/docker-pdf-server)](https://hub.docker.com/r/a0ne/docker-pdf-server)
+![Docker Pulls](https://img.shields.io/docker/pulls/a0ne/docker-pdf-server)
+
 
 
 Welcome to the Docker PDF Server! This project provides an ultra-minimalist PDF server running on Docker. Built with

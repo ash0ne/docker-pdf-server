@@ -7,7 +7,7 @@ gunicorn==22.0.0
 itsdangerous==2.2.0
 Jinja2==3.1.4
 MarkupSafe==2.1.5
-packaging==24.0
-typing_extensions==4.11.0
+packaging==24.1
+typing_extensions==4.12.2
 Wand==0.6.13
 Werkzeug==3.0.3

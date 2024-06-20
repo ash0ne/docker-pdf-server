@@ -17,6 +17,7 @@
   <body>
     <div class="container mt-4">
       <!-- File upload section -->
+      {% if g.current_user.role in ["admin", "maintainer"] %}
       <form action="/upload" method="post" enctype="multipart/form-data">
         <div class="input-group mb-3">
           <div class="custom-file">
@@ -38,6 +39,7 @@
           </div>
         </div>
       </form>
+      {% endif %}
 
       <!-- File search section -->
       <form
@@ -55,9 +57,14 @@
           aria-label="Search"
           id="searchInput"
           name="query"
-          {% if query %}
+          {%
+          if
+          query
+          %}
           value="{{ query }}"
-          {% endif %}
+          {%
+          endif
+          %}
         />
         <button
           class="btn btn-dark my-2 my-sm-0"
@@ -95,8 +102,11 @@
       this.src='/static/pdf-file.png';"
               />
             </div>
-            <div class="thumbnail-name">{{ file | replace(".pdf","") | truncate(20, '...') }}</div>
+            <div class="thumbnail-name">
+              {{ file | replace(".pdf","") | truncate(20, '...') }}
+            </div>
           </a>
+          {% if g.current_user.role in ["admin", "maintainer"] %}
           <form
             action="{{ url_for('delete_file') }}"
             method="post"
@@ -106,6 +116,7 @@
             <input type="hidden" name="filename" value="{{ file }}" />
             <button type="submit" class="btn btn-danger btn-sm">Delete</button>
           </form>
+          {% endif %}
         </div>
 
         {% endfor %}

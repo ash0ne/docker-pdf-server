@@ -13,8 +13,28 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <style>
+      .settings-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 1000;
+      }
+    </style>
   </head>
   <body>
+    {% if g.current_user.role in ["admin", "maintainer"] %}
+    <div class="settings-button">
+      <a href="/admin" class="btn btn-outline-danger">
+        <i class="fas fa-cog"></i>
+      </a>
+    </div>
+    {% endif %}
+
     <div class="container mt-4">
       <!-- File upload section -->
       {% if g.current_user.role in ["admin", "maintainer"] %}
@@ -57,14 +77,9 @@
           aria-label="Search"
           id="searchInput"
           name="query"
-          {%
-          if
-          query
-          %}
+          {% if query %}
           value="{{ query }}"
-          {%
-          endif
-          %}
+          {% endif %}
         />
         <button
           class="btn btn-dark my-2 my-sm-0"
@@ -98,8 +113,7 @@
                 src="/library/{{ file }}.png"
                 class="thumbnail-img"
                 alt="Thumbnail"
-                onerror="this.onerror=null;
-      this.src='/static/pdf-file.png';"
+                onerror="this.onerror=null; this.src='/static/pdf-file.png';"
               />
             </div>
             <div class="thumbnail-name">

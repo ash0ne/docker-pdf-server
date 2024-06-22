@@ -7,8 +7,30 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <style>
+      .settings-container {
+        display: flex;
+        justify-content: flex-end;
+        padding: 10px;
+      }
+      .settings-button {
+        z-index: 1000;
+      }
+    </style>
   </head>
   <body>
+    {% if g.current_user.role in ["admin", "maintainer"] %}
+
+    <div class="settings-container">
+      <a href="/" class="btn btn-outline-dark">
+        <i class="fas fa-home"></i>
+      </a>
+    </div>
+    {% endif %}
     <div class="container mt-5">
       <div class="row">
         <div class="col-md-4 mt-4">

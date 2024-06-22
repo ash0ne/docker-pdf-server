@@ -13,10 +13,34 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <style>
+      .settings-container {
+        display: flex;
+        justify-content: flex-end;
+        padding: 10px;
+      }
+      .settings-button {
+        z-index: 1000;
+      }
+    </style>
   </head>
   <body>
+    {% if g.current_user.role in ["admin", "maintainer"] %}
+
+    <div class="settings-container">
+      <a href="/admin" class="btn btn-outline-dark">
+        <i class="fas fa-cog"></i>
+      </a>
+    </div>
+    {% endif %}
+
     <div class="container mt-4">
       <!-- File upload section -->
+      {% if g.current_user.role in ["admin", "maintainer"] %}
       <form action="/upload" method="post" enctype="multipart/form-data">
         <div class="input-group mb-3">
           <div class="custom-file">
@@ -38,6 +62,7 @@
           </div>
         </div>
       </form>
+      {% endif %}
 
       <!-- File search section -->
       <form
@@ -91,12 +116,14 @@
                 src="/library/{{ file }}.png"
                 class="thumbnail-img"
                 alt="Thumbnail"
-                onerror="this.onerror=null;
-      this.src='/static/pdf-file.png';"
+                onerror="this.onerror=null; this.src='/static/pdf-file.png';"
               />
             </div>
-            <div class="thumbnail-name">{{ file | replace(".pdf","") | truncate(20, '...') }}</div>
+            <div class="thumbnail-name">
+              {{ file | replace(".pdf","") | truncate(20, '...') }}
+            </div>
           </a>
+          {% if g.current_user.role in ["admin", "maintainer"] %}
           <form
             action="{{ url_for('delete_file') }}"
             method="post"
@@ -106,6 +133,7 @@
             <input type="hidden" name="filename" value="{{ file }}" />
             <button type="submit" class="btn btn-danger btn-sm">Delete</button>
           </form>
+          {% endif %}
         </div>
 
         {% endfor %}

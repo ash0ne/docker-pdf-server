@@ -1,3 +1,11 @@
+# [1.4.0-beta.1](https://github.com/ash0ne/docker-pdf-server/compare/v1.3.0...v1.4.0-beta.1) (2024-06-22)
+
+
+### Features
+
+* Adding user management, RBAC and guest access. ([fc63cc6](https://github.com/ash0ne/docker-pdf-server/commit/fc63cc6b8525bf5fc154fe5d49b5d9fbe89f4da6))
+* User management and Guest Access ([d95515a](https://github.com/ash0ne/docker-pdf-server/commit/d95515a74a7fed0802ae28859dd44bb14bb53a3d))
+
 # [1.3.0](https://github.com/ash0ne/docker-pdf-server/compare/v1.2.0...v1.3.0) (2024-04-08)
 
 

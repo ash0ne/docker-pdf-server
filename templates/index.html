@@ -110,17 +110,17 @@
       <div id="pdfList" class="thumbnail-container">
         {% for file in files %}
         <div class="thumbnail-item">
-          <a href="/library/{{ file }}" target="_blank">
+          <a href="/library/{{ file.file }}" target="_blank">
             <div class="thumbnail-wrapper">
               <img
-                src="/library/{{ file }}.png"
+                src="/library/{{ file.thumbnail }}"
                 class="thumbnail-img"
                 alt="Thumbnail"
                 onerror="this.onerror=null; this.src='/static/pdf-file.png';"
               />
             </div>
             <div class="thumbnail-name">
-              {{ file | replace(".pdf","") | truncate(20, '...') }}
+              {{ file.file | replace(".pdf","") | truncate(18, '...') }}
             </div>
           </a>
           {% if g.current_user.role in ["admin", "maintainer"] %}
@@ -128,9 +128,9 @@
             action="{{ url_for('delete_file') }}"
             method="post"
             style="display: inline"
-            onsubmit="return confirmDelete('{{ file }}');"
+            onsubmit="return confirmDelete('{{ file.file }}');"
           >
-            <input type="hidden" name="filename" value="{{ file }}" />
+            <input type="hidden" name="filename" value="{{ file.file }}" />
             <button type="submit" class="btn btn-danger btn-sm">Delete</button>
           </form>
           {% endif %}

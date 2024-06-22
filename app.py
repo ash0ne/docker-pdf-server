@@ -124,8 +124,18 @@ def index():
     pdf_files_slice = pdf_files[start:end] if start < total_files else []
     pagination = Pagination(page=page, per_page=per_page, total=total_files)
 
+    pdf_files_with_thumbnails = []
+    for file in pdf_files_slice:
+        thumbnail_path = f"{file}.png"
+        if not os.path.exists(os.path.join(upload_folder, f"{file}.png")):
+            thumbnail_path = "pdf-file.png"
+        pdf_files_with_thumbnails.append({"file": file, "thumbnail": thumbnail_path})
+
     return render_template(
-        "index.html", files=pdf_files_slice, pagination=pagination, last=final_page
+        "index.html",
+        files=pdf_files_with_thumbnails,
+        pagination=pagination,
+        last=final_page,
     )
 
 
@@ -133,23 +143,45 @@ def index():
 @auth.login_required
 def search():
     query = request.args.get("query", "")
+    page = request.args.get("page", 1, type=int)
+    per_page = 12
     limit_exceeded = False
     upload_folder = app.config["UPLOAD_FOLDER"]
+
     if query:
         query = query.strip()
+
     pdf_files = [
         file
         for file in os.listdir(upload_folder)
         if file.endswith(".pdf") and query.lower() in file.lower()
     ]
-    if len(pdf_files) > 20:
-        pdf_files = pdf_files[:20]
+
+    total_files = len(pdf_files)
+    final_page = math.ceil(total_files / per_page)
+
+    if total_files > 20:
         limit_exceeded = True
+
+    start = (page - 1) * per_page
+    end = start + per_page
+
+    pdf_files_slice = pdf_files[start:end] if start < total_files else []
+    pagination = Pagination(page=page, per_page=per_page, total=total_files)
+
+    pdf_files_with_thumbnails = []
+    for file in pdf_files_slice:
+        thumbnail_path = f"{file}.png"
+        if not os.path.exists(os.path.join(upload_folder, f"{file}.png")):
+            thumbnail_path = "pdf-file.png"
+        pdf_files_with_thumbnails.append({"file": file, "thumbnail": thumbnail_path})
+
     return render_template(
         "index.html",
-        files=pdf_files,
+        files=pdf_files_with_thumbnails,
         query=query,
-        pagination=...,
+        pagination=pagination,
+        last=final_page,
         limit_exceeded=limit_exceeded,
     )
 

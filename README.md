@@ -5,16 +5,14 @@
 [![Docker Image Version](https://img.shields.io/docker/v/a0ne/docker-pdf-server)](https://hub.docker.com/r/a0ne/docker-pdf-server)
 ![Docker Pulls](https://img.shields.io/docker/pulls/a0ne/docker-pdf-server)
 
-
-
 Welcome to the Docker PDF Server! This project provides an ultra-minimalist PDF server running on Docker. Built with
 Flask and HTML, it offers a no-nonsense, straightforward way to upload, delete, view, search, and serve PDFs.
 
 ## Why Docker PDF Server?
 
 I developed this server out of a personal need for a quick, e-book-like viewing experience for my PDF library. Unlike
-document organizers like Paperless-ngx or eBook focused apps like Calibre-web, Kavita etc., this server focuses solely 
-on delivering a simple way to upload, browse, search, and access PDF e-books for reading. When you click on a PDF, 
+document organizers like Paperless-ngx or eBook focused apps like Calibre-web, Kavita etc., this server focuses solely
+on delivering a simple way to upload, browse, search, and access PDF e-books for reading. When you click on a PDF,
 it is served as is.
 
 It is actually functionally similar to any typical client app for a NAS. However, this server brings the convenience of
@@ -44,13 +42,28 @@ docker run -e DOCKER_PDF_SERVER_USER=<your-username> \
  -e DOCKER_PDF_SERVER_KEY=<your-random-secret-key> \
  -p 3040:5000 -v /Users/writable/host/path/pdf-library:/app/library/ ghcr.io/ash0ne/docker-pdf-server:latest
 ```
+
 You can then access the app by going to `http://localhost:3040`
 
 > Note: Starting the container without setting the env vars will start it with the default key, username and password
 
+### User Management
+
+Any version after 1.4.x, the default admin user configured through env vars `DOCKER_PDF_SERVER_USER` and `DOCKER_PDF_SERVER_PASSWORD`
+can add aadditional admins, maintainers and readers
+
+**Admin** - Can add other users
+**Maintainer** - Cannot add users but can upload, delete files
+**Reader** - Can only read files
+
+#### Guest Access
+
+Enabling guest access means that any unauthenticated user can read files but cannot delete or upload any files. To enable guest access,
+set `ENABLE_GUEST_ACCESS` env var to `yes` in your docker run. Any vaule other than `yes` will default to guest access being disabled.
+
 ### Building and Running Locally for Development
 
-- Get started by creating a python venv in this directory by running `python3 -m venv venv`  or `python -m venv venv`
+- Get started by creating a python venv in this directory by running `python3 -m venv venv` or `python -m venv venv`
 - Then run `source venv/bin/activate` on Linux/macOS.
 - If on Windows, run `env/Scripts/activate.bat` in CMD or `env/Scripts/Activate.ps1`for PowerShell.
 - Then run `pip install -r requirements.txt`
@@ -60,7 +73,7 @@ You can then access the app by going to `http://localhost:3040`
 > Note: The default [Flask Secret Key](https://explore-flask.readthedocs.io/en/latest/configuration.html) is set to
 > `super_secret_key` in the app and should be changed by setting the env var `DOCKER_PDF_SERVER_KEY`
 >
-> Similarly, the default user is `admin`  and can be changed by setting the env var `DOCKER_PDF_SERVER_USER`
+> Similarly, the default user is `admin` and can be changed by setting the env var `DOCKER_PDF_SERVER_USER`
 > and the default password is `password` and can be changed by setting the env var `DOCKER_PDF_SERVER_PASSWORD`
 
 ## Ideas and Enhancements

@@ -1,3 +1,10 @@
+# [1.4.0-beta.3](https://github.com/ash0ne/docker-pdf-server/compare/v1.4.0-beta.2...v1.4.0-beta.3) (2024-09-09)
+
+
+### Features
+
+* adding volume deets to the sample command ([617aea0](https://github.com/ash0ne/docker-pdf-server/commit/617aea05e84cdd26f863c816d666bd50892deff0))
+
 # [1.4.0-beta.2](https://github.com/ash0ne/docker-pdf-server/compare/v1.4.0-beta.1...v1.4.0-beta.2) (2024-09-09)
 
 

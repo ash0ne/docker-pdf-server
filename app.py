@@ -24,7 +24,6 @@ UPLOAD_FOLDER = "library"
 APP_KEY = os.environ.get("DOCKER_PDF_SERVER_KEY", "super_secret_key")
 APP_USER = os.environ.get("DOCKER_PDF_SERVER_USER", "admin")
 APP_PASSWORD = os.environ.get("DOCKER_PDF_SERVER_PASSWORD", "password")
-ENABLE_GUEST_ACCESS = os.environ.get("ENABLE_GUEST_ACCESS", "no")
 ALLOWED_EXTENSIONS = {"pdf"}
 
 app = Flask(__name__)
@@ -78,9 +77,6 @@ def verify_password(username, password):
     user = User.query.filter_by(username=username).first()
     if user and user.check_password(password):
         g.current_user = user
-        return g.current_user
-    if "yes" == ENABLE_GUEST_ACCESS:
-        g.current_user = User(username="default_guest", role="reader")
         return g.current_user
     return None
 

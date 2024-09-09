@@ -50,16 +50,11 @@ You can then access the app by going to `http://localhost:3040`
 ### User Management
 
 Any version after 1.4.x, the default admin user configured through env vars `DOCKER_PDF_SERVER_USER` and `DOCKER_PDF_SERVER_PASSWORD`
-can add aadditional admins, maintainers and readers
+can add additional admins, maintainers and readers
 
-**Admin** - Can add other users
-**Maintainer** - Cannot add users but can upload, delete files
-**Reader** - Can only read files
-
-#### Guest Access
-
-Enabling guest access means that any unauthenticated user can read files but cannot delete or upload any files. To enable guest access,
-set `ENABLE_GUEST_ACCESS` env var to `yes` in your docker run. Any vaule other than `yes` will default to guest access being disabled.
+- **Admin** - Can add other users
+- **Maintainer** - Cannot add users but can upload, delete files
+- **Reader** - Can only read files
 
 ### Building and Running Locally for Development
 

@@ -1,3 +1,10 @@
+# [1.4.0-beta.2](https://github.com/ash0ne/docker-pdf-server/compare/v1.4.0-beta.1...v1.4.0-beta.2) (2024-09-09)
+
+
+### Features
+
+* users and rbac ([1ebd5e5](https://github.com/ash0ne/docker-pdf-server/commit/1ebd5e5b898e7bca164e2812460b2d67fd0a8642))
+
 # [1.4.0-beta.1](https://github.com/ash0ne/docker-pdf-server/compare/v1.3.0...v1.4.0-beta.1) (2024-06-22)
 
 

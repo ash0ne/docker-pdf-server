@@ -56,6 +56,10 @@ can add additional admins, maintainers and readers
 - **Maintainer** - Cannot add users but can upload, delete files
 - **Reader** - Can only read files
 
+> Note: Because of how Basic HTTP auth works, the only way to switch user is to close and re-open the browser. 
+> On MacOS, this means exiting the browser fully and re-opening it. If you have the user and password saved in the browser, 
+> you might also have to delete that.
+
 ### Building and Running Locally for Development
 
 - Get started by creating a python venv in this directory by running `python3 -m venv venv` or `python -m venv venv`

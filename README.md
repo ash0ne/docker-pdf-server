@@ -40,7 +40,9 @@ be up and running.
 docker run -e DOCKER_PDF_SERVER_USER=<your-username> \
  -e DOCKER_PDF_SERVER_PASSWORD=<your-password> \
  -e DOCKER_PDF_SERVER_KEY=<your-random-secret-key> \
- -p 3040:5000 -v /Users/writable/host/path/pdf-library:/app/library/ ghcr.io/ash0ne/docker-pdf-server:latest
+ -v /Users/writable/host/path/pdf-library:/app/library/ \
+ -v /Users/writable/host/path/user-db:/app/instance/ \
+ -p 3040:5000 ghcr.io/ash0ne/docker-pdf-server:latest
 ```
 
 You can then access the app by going to `http://localhost:3040`

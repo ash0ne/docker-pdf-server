@@ -3,11 +3,15 @@ click==8.1.7
 Flask==3.0.3
 Flask-HTTPAuth==4.8.0
 flask-paginate==2024.4.12
+Flask-SQLAlchemy==3.1.1
+Flask-WTF==1.2.1
 gunicorn==22.0.0
 itsdangerous==2.2.0
 Jinja2==3.1.4
 MarkupSafe==2.1.5
 packaging==24.1
+SQLAlchemy==2.0.31
 typing_extensions==4.12.2
 Wand==0.6.13
-Werkzeug==3.0.3
+Werkzeug==3.0.4
+WTForms==3.1.2

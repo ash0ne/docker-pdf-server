@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>PDF Organizer - Error</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-<div class="container mt-5">
-    <div class="alert alert-danger" role="alert">
-        {{ error_message }}
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class="alert alert-danger" role="alert">{{ error_message }}</div>
+      <a class="btn btn-dark" href="{{ url_for('index') }}">Return Home</a>
     </div>
-    <a class="btn btn-dark" href="{{ url_for('index') }}">Return Home</a>
-</div>
-</body>
+  </body>
 </html>

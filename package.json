@@ -31,7 +31,7 @@
   },
   "name": "docker-pdf-server",
   "private": true,
-  "version": "1.4.0-beta.3",
+  "version": "1.4.0",
   "description": "An ultra-minimalist PDF server running on Docker",
   "author": "ash0ne",
   "license": "MIT",

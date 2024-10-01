@@ -1,3 +1,13 @@
+# [1.4.0](https://github.com/ash0ne/docker-pdf-server/compare/v1.3.0...v1.4.0) (2024-10-01)
+
+
+### Features
+
+* Adding user management, RBAC and guest access. ([fc63cc6](https://github.com/ash0ne/docker-pdf-server/commit/fc63cc6b8525bf5fc154fe5d49b5d9fbe89f4da6))
+* adding volume deets to the sample command ([617aea0](https://github.com/ash0ne/docker-pdf-server/commit/617aea05e84cdd26f863c816d666bd50892deff0))
+* User management and Guest Access ([d95515a](https://github.com/ash0ne/docker-pdf-server/commit/d95515a74a7fed0802ae28859dd44bb14bb53a3d))
+* users and rbac ([1ebd5e5](https://github.com/ash0ne/docker-pdf-server/commit/1ebd5e5b898e7bca164e2812460b2d67fd0a8642))
+
 # [1.4.0-beta.3](https://github.com/ash0ne/docker-pdf-server/compare/v1.4.0-beta.2...v1.4.0-beta.3) (2024-09-09)
 
 

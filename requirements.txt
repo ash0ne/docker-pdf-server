@@ -13,5 +13,5 @@ packaging==24.1
 SQLAlchemy==2.0.36
 typing_extensions==4.12.2
 Wand==0.6.13
-Werkzeug==3.0.4
+Werkzeug==3.1.1
 WTForms==3.1.2

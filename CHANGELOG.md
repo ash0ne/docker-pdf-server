@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/ash0ne/docker-pdf-server/compare/v1.4.0...v1.4.1) (2024-11-30)
+
+
+### Bug Fixes
+
+* version bumps  ([527111b](https://github.com/ash0ne/docker-pdf-server/commit/527111b85d798f7d1c8738df1cdb817caae1e2aa))
+
 # [1.4.0](https://github.com/ash0ne/docker-pdf-server/compare/v1.3.0...v1.4.0) (2024-10-01)
 
 

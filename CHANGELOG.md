@@ -1,3 +1,10 @@
+# [1.5.0-beta.1](https://github.com/ash0ne/docker-pdf-server/compare/v1.4.1...v1.5.0-beta.1) (2025-01-19)
+
+
+### Features
+
+* version bumps on Jinja, Markupsafe and SQLAlchemy ([59c381c](https://github.com/ash0ne/docker-pdf-server/commit/59c381c9216d9c7111f96228a0a02356ab13a229))
+
 ## [1.4.1](https://github.com/ash0ne/docker-pdf-server/compare/v1.4.0...v1.4.1) (2024-11-30)
 
 

@@ -1,5 +1,5 @@
 blinker==1.9.0
-click==8.1.7
+click==8.1.8
 Flask==3.1.0
 Flask-HTTPAuth==4.8.0
 flask-paginate==2024.4.12
@@ -7,10 +7,10 @@ Flask-SQLAlchemy==3.1.1
 Flask-WTF==1.2.2
 gunicorn==22.0.0
 itsdangerous==2.2.0
-Jinja2==3.1.4
-MarkupSafe==2.1.5
+Jinja2==3.1.5
+MarkupSafe==3.0.2
 packaging==24.2
-SQLAlchemy==2.0.36
+SQLAlchemy==2.0.37
 typing_extensions==4.12.2
 Wand==0.6.13
 WTForms==3.2.1
